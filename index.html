@@ -7,17 +7,20 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:Arial,sans-serif;
   background:#0b1020;
-  color:white;
+  color:#fff;
 }
+
 .container{
   max-width:500px;
   margin:auto;
   padding:25px 18px;
 }
+
 .card{
   background:#151c32;
   border:1px solid #293454;
@@ -25,58 +28,75 @@ body{
   padding:22px;
   margin-top:20px;
 }
-h1{text-align:center;margin-top:20px}
-h2{margin-top:0}
+
+h1{text-align:center}
+
 input,button{
   width:100%;
   padding:14px;
   border-radius:10px;
-  border:0;
   margin-top:12px;
   font-size:16px;
 }
+
 input{
   background:#0d1428;
-  color:white;
+  color:#fff;
   border:1px solid #34405f;
 }
+
 button{
-  background:#ffffff;
+  border:0;
+  background:#fff;
   color:#111;
   font-weight:bold;
-  cursor:pointer;
 }
-.buy{
-  margin-top:10px;
-}
+
 .hidden{display:none}
-.price{
-  font-size:28px;
-  font-weight:bold;
-}
-.upi{
-  background:#0d1428;
-  padding:14px;
-  border-radius:10px;
-  margin-top:15px;
-  word-break:break-all;
-}
-.note{
-  margin-top:18px;
-  padding:15px;
-  background:#202a47;
-  border-radius:12px;
-  line-height:1.5;
-}
-.success{
-  color:#7CFF9B;
-  font-weight:bold;
-}
+
 .plan{
   border:1px solid #34405f;
   padding:16px;
   border-radius:14px;
   margin-top:14px;
+}
+
+.price{
+  font-size:28px;
+  font-weight:bold;
+}
+
+.upi{
+  background:#0d1428;
+  padding:15px;
+  border-radius:10px;
+  margin-top:15px;
+  word-break:break-all;
+}
+
+.note{
+  background:#202a47;
+  padding:15px;
+  border-radius:12px;
+  margin-top:18px;
+  line-height:1.5;
+}
+
+.success{
+  color:#6dff91;
+  font-weight:bold;
+}
+
+.telegram{
+  display:block;
+  text-align:center;
+  text-decoration:none;
+  background:#229ED9;
+  color:white;
+  padding:14px;
+  border-radius:10px;
+  margin-top:15px;
+  font-weight:bold;
 }
 </style>
 </head>
@@ -85,115 +105,157 @@ button{
 
 <div class="container">
 
-  <!-- LOGIN -->
-  <div id="loginPage">
-    <h1>🔐 Kartik Key Store</h1>
+<!-- LOGIN -->
+<div id="loginPage">
 
-    <div class="card">
-      <h2>Enter Access Code</h2>
-      <p>Enter the code provided by Kartik.</p>
+<h1>🔐 Kartik Key Store</h1>
 
-      <input id="accessCode" type="text" placeholder="Enter code">
+<div class="card">
 
-      <button onclick="login()">Continue</button>
+<h2>Enter Access Code</h2>
 
-      <p id="loginError" style="color:#ff7070;"></p>
-    </div>
-  </div>
+<p>Enter the code provided by owner.</p>
 
+<input
+id="accessCode"
+type="text"
+placeholder="Enter access code"
+>
 
-  <!-- MAIN STORE -->
-  <div id="storePage" class="hidden">
+<button onclick="login()">Continue</button>
 
-    <h1>🎮 Kartik Key Store</h1>
+<p id="loginError" style="color:#ff7070;"></p>
 
-    <div class="card">
-      <h2>Buy Your Key</h2>
-      <p>Select your required duration.</p>
-
-      <div class="plan">
-        <h3>1 Day Key</h3>
-        <div class="price">₹149</div>
-        <button class="buy" onclick="showPayment('1 Day Key',149)">
-          Buy Now
-        </button>
-      </div>
-
-      <div class="plan">
-        <h3>7 Days Key</h3>
-        <div class="price">₹469</div>
-        <button class="buy" onclick="showPayment('7 Days Key',469)">
-          Buy Now
-        </button>
-      </div>
-
-      <div class="plan">
-        <h3>1 Month Key</h3>
-        <div class="price">₹969</div>
-        <button class="buy" onclick="showPayment('1 Month Key',969)">
-          Buy Now
-        </button>
-      </div>
-    </div>
-
-  </div>
+</div>
+</div>
 
 
-  <!-- PAYMENT -->
-  <div id="paymentPage" class="hidden">
+<!-- STORE -->
+<div id="storePage" class="hidden">
 
-    <div class="card">
+<h1>🎮 Kartik Key Store</h1>
 
-      <h2>💳 Payment</h2>
+<div class="card">
 
-      <p id="selectedPlan"></p>
+<h2>Buy Key</h2>
 
-      <div class="price" id="selectedAmount"></div>
+<p>Select your key duration.</p>
 
-      <div class="upi">
-        <strong>UPI ID</strong><br><br>
-        <span id="upiId">kartikupi93@axl</span>
-      </div>
+<div class="plan">
+<h3>1 Day Key</h3>
+<div class="price">₹149</div>
+<button onclick="showPayment('1 Day Key',149)">
+Buy Now
+</button>
+</div>
 
-      <button onclick="copyUPI()">📋 Copy UPI ID</button>
+<div class="plan">
+<h3>7 Days Key</h3>
+<div class="price">₹469</div>
+<button onclick="showPayment('7 Days Key',469)">
+Buy Now
+</button>
+</div>
 
-      <div class="note">
-        <strong>Pay using any UPI app</strong><br><br>
-        Google Pay<br>
-        PhonePe<br>
-        Paytm<br>
-        BHIM / Other UPI Apps
-      </div>
+<div class="plan">
+<h3>1 Month Key</h3>
+<div class="price">₹969</div>
+<button onclick="showPayment('1 Month Key',969)">
+Buy Now
+</button>
+</div>
 
-      <button onclick="paymentDone()">I Have Paid</button>
-
-    </div>
-
-  </div>
+</div>
+</div>
 
 
-  <!-- PAYMENT SUCCESS -->
-  <div id="successPage" class="hidden">
+<!-- PAYMENT -->
+<div id="paymentPage" class="hidden">
 
-    <div class="card">
+<div class="card">
 
-      <h2 class="success">✅ Payment Successful</h2>
+<h2>💳 Payment</h2>
 
-      <p>
-        Thank you for your purchase.
-      </p>
+<p id="selectedPlan"></p>
 
-      <div class="note">
-        <strong>Important:</strong><br><br>
-        Please send your payment screenshot in
-        <strong>Personal DM</strong> to Kartik.
-        <br><br>
-        After payment verification, your key will be provided.
-      </div>
+<div class="price" id="selectedAmount"></div>
 
-    </div>
+<div class="upi">
 
-  </div>
+<strong>UPI ID</strong>
+
+<br><br>
+
+<span id="upiId">kartikupi93@axl</span>
+
+</div>
+
+<button onclick="copyUPI()">
+📋 Copy UPI ID
+</button>
+
+<p>
+Pay the exact amount using your preferred UPI app.
+</p>
+
+<label><strong>Enter UTR / Transaction ID</strong></label>
+
+<input
+id="utr"
+type="text"
+placeholder="Enter UTR / Transaction ID"
+>
+
+<button onclick="submitPayment()">
+Submit Payment
+</button>
+
+</div>
+</div>
+
+
+<!-- SUCCESS -->
+<div id="successPage" class="hidden">
+
+<div class="card">
+
+<h2 class="success">
+✅ Payment Submitted
+</h2>
+
+<p>
+Your payment details have been submitted successfully.
+</p>
+
+<div class="note">
+
+<strong>📸 Important</strong>
+
+<br><br>
+
+Your payment will be verified by the owner.
+
+<br><br>
+
+After payment, please send your
+<strong>payment screenshot</strong>
+to the owner on Telegram.
+
+</div>
+
+<a
+class="telegram"
+href="https://t.me/UP_X_KARTIK"
+target="_blank"
+>
+✈️ Send Screenshot to Owner
+<br>
+@UP_X_KARTIK
+</a>
+
+</div>
+
+</div>
 
 </div>
 
@@ -202,61 +264,85 @@ button{
 
 const COMMON_CODE = "kartikkeystore";
 
+let selectedPlan = "";
+let selectedAmount = 0;
+
+
 function login(){
 
-  const code = document
-    .getElementById("accessCode")
-    .value
-    .trim();
+const code =
+document.getElementById("accessCode").value.trim();
 
-  if(code === COMMON_CODE){
+if(code === COMMON_CODE){
 
-    document.getElementById("loginPage")
-      .classList.add("hidden");
+document.getElementById("loginPage")
+.classList.add("hidden");
 
-    document.getElementById("storePage")
-      .classList.remove("hidden");
+document.getElementById("storePage")
+.classList.remove("hidden");
 
-  }else{
+}else{
 
-    document.getElementById("loginError")
-      .innerText = "❌ Invalid access code";
+document.getElementById("loginError")
+.innerText =
+"❌ Invalid access code";
 
-  }
+}
+
 }
 
 
 function showPayment(plan, amount){
 
-  document.getElementById("storePage")
-    .classList.add("hidden");
+selectedPlan = plan;
+selectedAmount = amount;
 
-  document.getElementById("paymentPage")
-    .classList.remove("hidden");
+document.getElementById("storePage")
+.classList.add("hidden");
 
-  document.getElementById("selectedPlan")
-    .innerText = "Selected: " + plan;
+document.getElementById("paymentPage")
+.classList.remove("hidden");
 
-  document.getElementById("selectedAmount")
-    .innerText = "₹" + amount;
+document.getElementById("selectedPlan")
+.innerText =
+"Selected: " + plan;
+
+document.getElementById("selectedAmount")
+.innerText =
+"₹" + amount;
+
 }
 
 
 function copyUPI(){
 
-  navigator.clipboard.writeText("kartikupi93@axl");
+navigator.clipboard.writeText(
+"kartikupi93@axl"
+);
 
-  alert("UPI ID copied!");
+alert("UPI ID copied!");
+
 }
 
 
-function paymentDone(){
+function submitPayment(){
 
-  document.getElementById("paymentPage")
-    .classList.add("hidden");
+const utr =
+document.getElementById("utr").value.trim();
 
-  document.getElementById("successPage")
-    .classList.remove("hidden");
+if(utr === ""){
+
+alert("Please enter your UTR / Transaction ID.");
+
+return;
+
+}
+
+document.getElementById("paymentPage")
+.classList.add("hidden");
+
+document.getElementById("successPage")
+.classList.remove("hidden");
 
 }
 
