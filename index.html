@@ -1,157 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kartik Key Store</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kartik Key Store</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      background: #f5f7fb;
-      color: #222;
-    }
-
-    header {
-      background: #111827;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      font-size: 30px;
-    }
-
-    header p {
-      margin-top: 8px;
-      color: #cbd5e1;
-    }
-
-    .hero {
-      padding: 60px 20px;
-      text-align: center;
-      background: white;
-    }
-
-    .hero h2 {
-      font-size: 40px;
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      color: #64748b;
-      font-size: 18px;
-      margin-bottom: 25px;
-    }
-
-    .btn {
-      display: inline-block;
-      background: #2563eb;
-      color: white;
-      padding: 13px 25px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .products {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 20px;
-    }
-
-    .products h2 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-      text-align: center;
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
-    }
-
-    .price {
-      font-size: 24px;
-      font-weight: bold;
-      color: #2563eb;
-      margin: 15px 0;
-    }
-
-    footer {
-      margin-top: 50px;
-      padding: 25px;
-      text-align: center;
-      background: #111827;
-      color: white;
-    }
-  </style>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#0b1020;
+  color:white;
+}
+.container{
+  max-width:500px;
+  margin:auto;
+  padding:25px 18px;
+}
+.card{
+  background:#151c32;
+  border:1px solid #293454;
+  border-radius:18px;
+  padding:22px;
+  margin-top:20px;
+}
+h1{text-align:center;margin-top:20px}
+h2{margin-top:0}
+input,button{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:0;
+  margin-top:12px;
+  font-size:16px;
+}
+input{
+  background:#0d1428;
+  color:white;
+  border:1px solid #34405f;
+}
+button{
+  background:#ffffff;
+  color:#111;
+  font-weight:bold;
+  cursor:pointer;
+}
+.buy{
+  margin-top:10px;
+}
+.hidden{display:none}
+.price{
+  font-size:28px;
+  font-weight:bold;
+}
+.upi{
+  background:#0d1428;
+  padding:14px;
+  border-radius:10px;
+  margin-top:15px;
+  word-break:break-all;
+}
+.note{
+  margin-top:18px;
+  padding:15px;
+  background:#202a47;
+  border-radius:12px;
+  line-height:1.5;
+}
+.success{
+  color:#7CFF9B;
+  font-weight:bold;
+}
+.plan{
+  border:1px solid #34405f;
+  padding:16px;
+  border-radius:14px;
+  margin-top:14px;
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>🔑 Kartik Key Store</h1>
-    <p>Your trusted digital key store</p>
-  </header>
+<div class="container">
 
-  <section class="hero">
-    <h2>Welcome to Kartik Key Store</h2>
-    <p>Find your favourite digital keys at the best prices.</p>
-    <a href="#products" class="btn">View Products</a>
-  </section>
+  <!-- LOGIN -->
+  <div id="loginPage">
+    <h1>🔐 Kartik Key Store</h1>
 
-  <section class="products" id="products">
-    <h2>Choose Your Key</h2>
+    <div class="card">
+      <h2>Enter Access Code</h2>
+      <p>Enter the code provided by Kartik.</p>
 
-    <div class="grid">
+      <input id="accessCode" type="text" placeholder="Enter code">
 
-      <div class="card">
+      <button onclick="login()">Continue</button>
+
+      <p id="loginError" style="color:#ff7070;"></p>
+    </div>
+  </div>
+
+
+  <!-- MAIN STORE -->
+  <div id="storePage" class="hidden">
+
+    <h1>🎮 Kartik Key Store</h1>
+
+    <div class="card">
+      <h2>Buy Your Key</h2>
+      <p>Select your required duration.</p>
+
+      <div class="plan">
         <h3>1 Day Key</h3>
-        <p>Premium digital key - 1 Day</p>
         <div class="price">₹149</div>
-        <a href="#" class="btn">Buy Now</a>
+        <button class="buy" onclick="showPayment('1 Day Key',149)">
+          Buy Now
+        </button>
       </div>
 
-      <div class="card">
+      <div class="plan">
         <h3>7 Days Key</h3>
-        <p>Premium digital key - 7 Days</p>
         <div class="price">₹469</div>
-        <a href="#" class="btn">Buy Now</a>
+        <button class="buy" onclick="showPayment('7 Days Key',469)">
+          Buy Now
+        </button>
       </div>
 
-      <div class="card">
+      <div class="plan">
         <h3>1 Month Key</h3>
-        <p>Premium digital key - 1 Month</p>
         <div class="price">₹969</div>
-        <a href="#" class="btn">Buy Now</a>
+        <button class="buy" onclick="showPayment('1 Month Key',969)">
+          Buy Now
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- PAYMENT -->
+  <div id="paymentPage" class="hidden">
+
+    <div class="card">
+
+      <h2>💳 Payment</h2>
+
+      <p id="selectedPlan"></p>
+
+      <div class="price" id="selectedAmount"></div>
+
+      <div class="upi">
+        <strong>UPI ID</strong><br><br>
+        <span id="upiId">kartikupi93@axl</span>
+      </div>
+
+      <button onclick="copyUPI()">📋 Copy UPI ID</button>
+
+      <div class="note">
+        <strong>Pay using any UPI app</strong><br><br>
+        Google Pay<br>
+        PhonePe<br>
+        Paytm<br>
+        BHIM / Other UPI Apps
+      </div>
+
+      <button onclick="paymentDone()">I Have Paid</button>
+
+    </div>
+
+  </div>
+
+
+  <!-- PAYMENT SUCCESS -->
+  <div id="successPage" class="hidden">
+
+    <div class="card">
+
+      <h2 class="success">✅ Payment Successful</h2>
+
+      <p>
+        Thank you for your purchase.
+      </p>
+
+      <div class="note">
+        <strong>Important:</strong><br><br>
+        Please send your payment screenshot in
+        <strong>Personal DM</strong> to Kartik.
+        <br><br>
+        After payment verification, your key will be provided.
       </div>
 
     </div>
-  </section>
 
-  <footer>
-    <p>©️ 2026 Kartik Key Store. All Rights Reserved.</p>
-  </footer>
+  </div>
+
+</div>
+
+
+<script>
+
+const COMMON_CODE = "kartikkeystore";
+
+function login(){
+
+  const code = document
+    .getElementById("accessCode")
+    .value
+    .trim();
+
+  if(code === COMMON_CODE){
+
+    document.getElementById("loginPage")
+      .classList.add("hidden");
+
+    document.getElementById("storePage")
+      .classList.remove("hidden");
+
+  }else{
+
+    document.getElementById("loginError")
+      .innerText = "❌ Invalid access code";
+
+  }
+}
+
+
+function showPayment(plan, amount){
+
+  document.getElementById("storePage")
+    .classList.add("hidden");
+
+  document.getElementById("paymentPage")
+    .classList.remove("hidden");
+
+  document.getElementById("selectedPlan")
+    .innerText = "Selected: " + plan;
+
+  document.getElementById("selectedAmount")
+    .innerText = "₹" + amount;
+}
+
+
+function copyUPI(){
+
+  navigator.clipboard.writeText("kartikupi93@axl");
+
+  alert("UPI ID copied!");
+}
+
+
+function paymentDone(){
+
+  document.getElementById("paymentPage")
+    .classList.add("hidden");
+
+  document.getElementById("successPage")
+    .classList.remove("hidden");
+
+}
+
+</script>
 
 </body>
 </html>
